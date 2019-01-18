@@ -1,6 +1,6 @@
 import { DoctorFinder } from './../src/doctor-finder';
 import { DoctorData } from './../src/doctor-data';
-
+import { SymptomFinder } from './../src/symptom-promise';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,30 +35,48 @@ import './styles.css'
  }
 
 $(document).ready(function(){
-  const finder = new DoctorFinder();
 
-  $(".doctor-finder-name").submit(function(event){
-    event.preventDefault();
-    const first = $("#doctor-first-name").val();
-    const last = $("#doctor-last-name").val();
-    let promise = finder.findDoctorByName(first, last);
+  const symptoms = new SymptomFinder()
+  let promise = symptoms.findSymptom()
 
-    promise.then(function(response){
-      parseData(response);
-    }, function(error){
-      errorMessage(error)
-    })
-  });
 
-  $(".doctor-finder-keyword").submit(function(event){
-    event.preventDefault();
-    const keyword = $("#keyword").val();
-    let promise = finder.findDoctorByKeyword(keyword);
 
-    promise.then(function(response){
-      parseData(response);
-    }, function(error){
-      errorMessage(error)
-    })
-  });
+  promise.then(function(response){
+    let body = JSON.parse(response);
+    let allSymptoms = body.data;
+    let allSymptomsArray = [];
+
+    for(let i = 0; i < allSymptoms.length; i++){
+      allSymptomsArray.push(`<option value="${allSymptoms[i].name}">${allSymptoms[i].name}</option>`);
+    }
+    $("#keyword").html(allSymptomsArray.join(''));
+
+    const finder = new DoctorFinder();
+    $(".doctor-finder-name").submit(function(event){
+      event.preventDefault();
+      const first = $("#doctor-first-name").val();
+      const last = $("#doctor-last-name").val();
+      let promise = finder.findDoctorByName(first, last);
+
+      promise.then(function(response){
+        parseData(response);
+      }, function(error){
+        errorMessage(error)
+      })
+    });
+
+    $(".doctor-finder-keyword").submit(function(event){
+      event.preventDefault();
+      const keyword = $("#keyword").val();
+      let promise = finder.findDoctorByKeyword(keyword);
+
+      promise.then(function(response){
+        parseData(response);
+      }, function(error){
+        errorMessage(error)
+      })
+    });
+  })
+
+
 });
