@@ -1,3 +1,13 @@
+.container-fluid {
+  display: inline-grid;
+}
+
+.card {
+  display: inline-block;
+  margin: 7px;
+  padding: 5px;
+}
+
 #error {
   display: none;
 }
