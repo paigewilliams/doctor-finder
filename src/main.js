@@ -1,30 +1,9 @@
 import { DoctorFinder } from './../src/doctor-finder';
 import { DoctorData } from './../src/doctor-data';
-import { Doctor } from './../src/doctor';
+
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-function parseDoctors(data){
-  console.log(data)
-  let doctorData = new DoctorData();
-  data.forEach(function(doctor){
-    const firstName = doctor.profile.first_name;
-    const lastName = doctor.profile.last_name;
-    const street = doctor.practices[0].visit_address.street;
-    const aptNum = doctor.practices[0].visit_address.street2;
-    const city = doctor.practices[0].visit_address.city;
-    const state = doctor.practices[0].visit_address.state;
-    const zip = doctor.practices[0].visit_address.zip;
-    const phoneNumber = doctor.practices[0].phones[0].number;
-    const newPatient = doctor. practices[0].accepts_new_patients;
-    const lat = doctor.practices[0].lat;
-    const long = doctor.practices[0].lon;
-    doctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
-    doctorData.createAllDocs(doctor);
-  })
-  console.log(doctorData)
-}
 
 
 $(document).ready(function(){
@@ -38,7 +17,9 @@ $(document).ready(function(){
 
     promise.then(function(response){
       let body = JSON.parse(response);
-      parseDoctors(body);
+      let data = body.data;
+      let doctorData = new DoctorData();
+      doctorData.createDoctorObject(data)
     })
   });
 
@@ -50,12 +31,9 @@ $(document).ready(function(){
     promise.then(function(response){
       let body = JSON.parse(response);
       let data = body.data;
-      parseDoctors(data)
-
-
-
-
-
+      let doctorData = new DoctorData();
+      doctorData.createAllDocs(data)
+      console.log(doctorData.allDocs)
     })
   });
 });
