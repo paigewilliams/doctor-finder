@@ -7,12 +7,19 @@
     <div class="container">
       <h1>Doctor Finder</h1>
       <form class="doctor-finder">
-        <label for="doctor-first-name">First Name</label>
-        <input type="text" id="doctor-first-name">
-        <label for="doctor-last-name">Last Name</label>
-        <input type="text" id="doctor-last-name">
-        <label for="keyword">Keyword</label>
-        <input type="text" id="keyword">
+        <div class="form-group">
+          <label for="doctor-first-name">First Name</label>
+          <input type="text" class="form-control" id="doctor-first-name">
+        </div>
+        <div class="form-group">
+          <label for="doctor-last-name">Last Name</label>
+          <input type="text" class="form-control" id="doctor-last-name">
+        </div>
+        <div class="form-group">
+          <label for="keyword">Keyword</label>
+          <input type="text" class="form-control" id="keyword">
+        </div>
+        <button type="submit" class="btn btn-info">Find a doctor!</button>
       </form>
     </div>
   </body>
