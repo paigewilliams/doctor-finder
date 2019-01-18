@@ -6,7 +6,6 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
 
-
  function showDoctorInfo(doctors){
    for(let i = 0; i < doctors.length; i++) {
      $(".output").append(
@@ -26,7 +25,16 @@ import './styles.css'
    let doctorData = new DoctorData();
    doctorData.createAllDocs(data);
    let allDocs = doctorData.allDocs;
-   showDoctorInfo(allDocs)
+   if (allDocs.length === 0){
+     noDoctors();
+   } else {
+     $("#no-doctors").hide();
+     showDoctorInfo(allDocs)
+   }
+ }
+
+ function noDoctors(){
+   $("#no-doctors").show();
  }
 
  function errorMessage(error){
@@ -38,8 +46,6 @@ $(document).ready(function(){
 
   const symptoms = new SymptomFinder()
   let promise = symptoms.findSymptom()
-
-
 
   promise.then(function(response){
     let body = JSON.parse(response);
