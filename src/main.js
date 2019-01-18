@@ -4,6 +4,16 @@ import { DoctorData } from './../src/doctor-data';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css'
+
+
+ function showDoctorInfo(doctors){
+   doctors.forEach(function(doctor){
+     $(".output").append(`<p>Name: ${doctor.firstName} ${doctor.lastName}</p><br><p>Address: ${doctor.street}</p><br><p>${doctor.city}, ${doctor.state} ${doctor.zip}</p><br><p>Phone Number: ${doctor.phoneNumber}</p><br><p>Taking new patients? ${doctor.newPatient}</p><br>` )
+   })
+
+
+ }
 
 
 $(document).ready(function(){
@@ -19,8 +29,10 @@ $(document).ready(function(){
       let body = JSON.parse(response);
       let data = body.data;
       let doctorData = new DoctorData();
-      doctorData.createDoctorObject(data)
+      showDoctorInfo(doctorData.createAllDocs(data))
+
     }, function(error){
+      $("#error").show();
       $(".error").html(`There was error processing your query: ${error.message}`)
     })
   });
@@ -34,8 +46,11 @@ $(document).ready(function(){
       let body = JSON.parse(response);
       let data = body.data;
       let doctorData = new DoctorData();
-      doctorData.createAllDocs(data)
+      doctorData.createAllDocs(data);
+      let allDocs = doctorData.allDocs;
+      showDoctorInfo(allDocs);
     }, function(error){
+      $("#error").show();
       $(".error").html(`There was error processing your query: ${error.message}`)
     })
   });

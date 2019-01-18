@@ -6,12 +6,11 @@ export class DoctorData {
   }
 
   createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long){
-  let newDoctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
-  this.allDocs.push(newDoctor);
+    let newDoctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
+    this.allDocs.push(newDoctor);
   }
 
   createAllDocs(data)  {
-    debugger;
     for(let i = 0; i < data.length; i++){
       const firstName = data[i].profile.first_name;
       const lastName = data[i].profile.last_name;
