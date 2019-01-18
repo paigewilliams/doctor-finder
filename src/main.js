@@ -26,16 +26,13 @@ import './styles.css'
    doctorData.createAllDocs(data);
    let allDocs = doctorData.allDocs;
    if (allDocs.length === 0){
-     noDoctors();
+     $("#no-doctors").show();
    } else {
      $("#no-doctors").hide();
      showDoctorInfo(allDocs)
    }
  }
 
- function noDoctors(){
-   $("#no-doctors").show();
- }
 
  function errorMessage(error){
    $("#error").show();

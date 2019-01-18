@@ -36,10 +36,6 @@ Launch project in your in browser
 npm run start
 ```
 
-## Specs  
-
-View specs [here](https://github.com/paigewilliams/providore-website/tree/master/spec/models).
-
 ## Objectives
 
 - [x] Does the application correctly use webpack?
@@ -47,14 +43,16 @@ View specs [here](https://github.com/paigewilliams/providore-website/tree/master
 - [x] Does the app separate user interface and business logic functionalities into different JavaScript files?
 - [x] Does the application correctly make an API call?
 - [x] Does the application correctly parse data from the API response?
-- [ ] Does the application handle errors when the API call doesn't return a 200 OK status as well as return a message if the API returns no results?
-- [ ] Code and Git documentation follow best practices (setup instructions in README, .gitignore file discluding unnecessary content from repo, detailed well-formatted commit messages, etc.)
-- [ ] Does the project demonstrate concepts covered this week? If prompted, are you able to discuss the flow of your code and the concepts behind it with an instructor using correct terminology?
-- [ ] Is the app in a presentable, portfolio-quality state?
-- [ ] Is required functionality in place by the Friday deadline?
+- [x] Does the application handle errors when the API call doesn't return a 200 OK status as well as return a message if the API returns no results?
+- [x] Code and Git documentation follow best practices (setup instructions in README, .gitignore file discluding unnecessary content from repo, detailed well-formatted commit messages, etc.)
+- [x] Does the project demonstrate concepts covered this week? If prompted, are you able to discuss the flow of your code and the concepts behind it with an instructor using correct terminology?
+- [x] Is the app in a presentable, portfolio-quality state?
+- [x] Is required functionality in place by the Friday deadline?
 
 
 ## Bugs
+
+No known bugs.
 
 ## Languages, Frameworks and API's Used
 
