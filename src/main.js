@@ -33,6 +33,17 @@ import './styles.css'
    }
  }
 
+ function parseSymptomData(response){
+   let body = JSON.parse(response);
+   const allSymptoms = body.data;
+   const allSymptomsArray = [];
+
+   for(let i = 0; i < allSymptoms.length; i++){
+     allSymptomsArray.push(`<option value="${allSymptoms[i].name}">${allSymptoms[i].name}</option>`);
+   }
+   $("#keyword").html(allSymptomsArray.join(''));
+ }
+
 
  function errorMessage(error){
    $("#error").show();
@@ -45,14 +56,7 @@ $(document).ready(function(){
   let promise = symptoms.findSymptom()
 
   promise.then(function(response){
-    let body = JSON.parse(response);
-    let allSymptoms = body.data;
-    let allSymptomsArray = [];
-
-    for(let i = 0; i < allSymptoms.length; i++){
-      allSymptomsArray.push(`<option value="${allSymptoms[i].name}">${allSymptoms[i].name}</option>`);
-    }
-    $("#keyword").html(allSymptomsArray.join(''));
+    parseSymptomData(response)
 
     const finder = new DoctorFinder();
     $(".doctor-finder-name").submit(function(event){
@@ -60,8 +64,8 @@ $(document).ready(function(){
       const first = $("#doctor-first-name").val();
       const last = $("#doctor-last-name").val();
       let promise = finder.findDoctorByName(first, last);
-
       promise.then(function(response){
+        $(".doctor-finder-name")[0].reset();
         parseData(response);
       }, function(error){
         errorMessage(error)
@@ -74,6 +78,7 @@ $(document).ready(function(){
       let promise = finder.findDoctorByKeyword(keyword);
 
       promise.then(function(response){
+        $(".doctor-finder-keyword")[0].reset();
         parseData(response);
       }, function(error){
         errorMessage(error)
