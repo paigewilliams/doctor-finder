@@ -1,6 +1,7 @@
 export class Doctor{
-  constructor(name, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long){
-    this.name = name;
+  constructor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long){
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.street = street;
     this.aptNum = aptNum;
     this.city = city;

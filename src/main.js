@@ -5,20 +5,22 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function parseDoctors(body){
-  console.log(body)
-  body.data.forEach(function(doctor){
-    const name = doctor.data[0].practices[0].name;
-    const street = doctor.data[0].practices[0].visit_address.street;
-    const aptNum = doctor.data[0].practices[0].visit_address.street2;
-    const city = doctor.data[0].practices[0].visit_address.city;
-    const state = doctor.data[0].practices[0].visit_address.state;
-    const zip = doctor.data[0].practices[0].visit_address.zip;
-    const phoneNumber = doctor.data[0].practices[0].phones[0].number;
-    const newPatient = doctor.data[0]. practices[0].accepts_new_patients;
-    const lat = doctor.data[0].practices[0].lat;
-    const long = doctor.data[0].practices[0].long;
-    doctor = new Doctor(name, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
+function parseDoctors(data){
+  console.log(data)
+  let doctorData = new DoctorData();
+  data.forEach(function(doctor){
+    const firstName = doctor.profile.first_name;
+    const lastName = doctor.profile.last_name;
+    const street = doctor.practices[0].visit_address.street;
+    const aptNum = doctor.practices[0].visit_address.street2;
+    const city = doctor.practices[0].visit_address.city;
+    const state = doctor.practices[0].visit_address.state;
+    const zip = doctor.practices[0].visit_address.zip;
+    const phoneNumber = doctor.practices[0].phones[0].number;
+    const newPatient = doctor. practices[0].accepts_new_patients;
+    const lat = doctor.practices[0].lat;
+    const long = doctor.practices[0].lon;
+    doctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
     doctorData.createAllDocs(doctor);
   })
   console.log(doctorData)
@@ -27,7 +29,7 @@ function parseDoctors(body){
 
 $(document).ready(function(){
   const finder = new DoctorFinder();
-  const doctorData = new DoctorData();
+
   $(".doctor-finder-name").submit(function(event){
     event.preventDefault();
     const first = $("#doctor-first-name").val();
@@ -47,8 +49,8 @@ $(document).ready(function(){
 
     promise.then(function(response){
       let body = JSON.parse(response);
-
-      parseDoctors(body);
+      let data = body.data;
+      parseDoctors(data)
 
 
 
