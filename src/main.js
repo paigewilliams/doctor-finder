@@ -16,13 +16,18 @@ $(document).ready(function(){
 
     promise.then(function(response){
       let body = JSON.parse(response);
-      
+
     })
   });
 
   $(".doctor-finder-keyword").submit(function(event){
     event.preventDefault();
     const keyword = $("#keyword").val();
-    console.log(keyword)
+    let promise = finder.findDoctorByKeyword(keyword);
+
+    promise.then(function(response){
+      let body = JSON.parse(response);
+      console.log(body);
+    })
   });
 });
