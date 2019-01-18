@@ -1,11 +1,22 @@
 .container-fluid {
-  display: inline-grid;
+  margin: 3rem auto;
+  max-width: 1000px;
+
 }
 
 .card {
   display: inline-block;
   margin: 7px;
   padding: 5px;
+  align-self: center;
+}
+
+.output {
+  margin-top: 10px;
+}
+
+.row {
+  margin-top: 50px;
 }
 
 #error {
@@ -13,4 +24,8 @@
 }
 #no-doctors {
   display: none;
+}
+
+#ailment-btn {
+  margin-top: 84px;
 }
