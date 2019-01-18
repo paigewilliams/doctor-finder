@@ -20,6 +20,8 @@ $(document).ready(function(){
       let data = body.data;
       let doctorData = new DoctorData();
       doctorData.createDoctorObject(data)
+    }, function(error){
+      $(".error").html(`There was error processing your query: ${error.message}`)
     })
   });
 
@@ -33,7 +35,8 @@ $(document).ready(function(){
       let data = body.data;
       let doctorData = new DoctorData();
       doctorData.createAllDocs(data)
-      console.log(doctorData.allDocs)
+    }, function(error){
+      $(".error").html(`There was error processing your query: ${error.message}`)
     })
   });
 });
