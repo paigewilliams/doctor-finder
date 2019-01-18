@@ -5,8 +5,8 @@ export class DoctorData {
     this.allDocs = []
   }
 
-  createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long){
-    let newDoctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
+  createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long, spec){
+    const newDoctor = new Doctor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long, spec);
     this.allDocs.push(newDoctor);
   }
 
@@ -23,7 +23,8 @@ export class DoctorData {
       const newPatient = data[i]. practices[0].accepts_new_patients;
       const lat = data[i].practices[0].lat;
       const long = data[i].practices[0].lon;
-      this.createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
+      const spec = data[i].specialties[0].actor
+      this.createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long, spec);
     }
   }
 }

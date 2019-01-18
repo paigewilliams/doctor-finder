@@ -12,6 +12,7 @@ import './styles.css'
        `<div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"> ${doctors[i].firstName} ${doctors[i].lastName}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${doctors[i].spec}</h6
           <h6 class="card-subtitle mb-2 text-muted"> ${doctors[i].street} ${doctors[i].city}, ${doctors[i].state} ${doctors[i].zip}</h6>
           <p class="card-text">Phone Number: ${doctors[i].phoneNumber}<br><p>Taking new patients? ${doctors[i].newPatient}</p>
         </div>
@@ -21,10 +22,10 @@ import './styles.css'
 
  function parseData(response){
    let body = JSON.parse(response);
-   let data = body.data;
-   let doctorData = new DoctorData();
+   const data = body.data;
+   const doctorData = new DoctorData();
    doctorData.createAllDocs(data);
-   let allDocs = doctorData.allDocs;
+   const allDocs = doctorData.allDocs;
    if (allDocs.length === 0){
      $("#no-doctors").show();
    } else {

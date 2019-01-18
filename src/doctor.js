@@ -1,5 +1,5 @@
 export class Doctor{
-  constructor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long){
+  constructor(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long, spec){
     this.firstName = firstName;
     this.lastName = lastName;
     this.street = street;
@@ -11,5 +11,6 @@ export class Doctor{
     this.newPatient = newPatient;
     this.lat = lat;
     this.long = long;
+    this.spec = spec;
   }
 }
