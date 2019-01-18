@@ -4,6 +4,19 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+function parseDoctors(body){
+  body.forEach(function(doctor){
+    const name = doctor.data[0].practices[0].name;
+    const street = doctor.data[0].practices[0].visit_address.street;
+    const aptNum = doctor.data[0].practices[0].visit_address.street2;
+    const city = doctor.data[0].practices[0].visit_address.city;
+    const state = doctor.data[0].practices[0].visit_address.state;
+    const zip = doctor.data[0].practices[0].visit_address.zip;
+    const phoneNumber = doctor.data[0].practices[0].phones[0].number;
+    const newPatient = doctor.data[0]. practices[0].accepts_new_patients;
+    
+  })
+}
 
 
 $(document).ready(function(){
@@ -17,6 +30,7 @@ $(document).ready(function(){
 
     promise.then(function(response){
       let body = JSON.parse(response);
+      parseDoctors(body);
     })
   });
 
@@ -27,19 +41,12 @@ $(document).ready(function(){
 
     promise.then(function(response){
       let body = JSON.parse(response);
+      parseDoctors(body);
 
 
 
-      const name = body.data[0].practices[0].name;
-      const street = body.data[0].practices[0].visit_address.street;
-      const aptNum = body.data[0].practices[0].visit_address.street2;
-      const city = body.data[0].practices[0].visit_address.city;
-      const state = body.data[0].practices[0].visit_address.state;
-      const zip = body.data[0].practices[0].visit_address.zip;
-      const phoneNumber = body.data[0].practices[0].phones[0].number;
-      const newPatient = body.data[0]. practices[0].accepts_new_patients;
 
-      console.log("name: " + name + "street:" + street + "aptNum: " + aptNum + "city: " + city + "state: " + state + "zip: " + zip + "phoneNumber: " + phoneNumber + "newPatient: " + newPatient);
+
     })
   });
 });
