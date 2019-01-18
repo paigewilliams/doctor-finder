@@ -9,9 +9,16 @@ import './styles.css'
 
  function showDoctorInfo(doctors){
    for(let i = 0; i < doctors.length; i++) {
-     $(".output").append(`<p>Name: ${doctors[i].firstName} ${doctors[i].lastName}</p><br><p>Address: ${doctors[i].street}</p><br><p>${doctors[i].city}, ${doctors[i].state} ${doctors[i].zip}</p><br><p>Phone Number: ${doctors[i].phoneNumber}</p><br><p>Taking new patients? ${doctors[i].newPatient}</p><br>`)
-   }
- }
+     $(".output").append(
+       `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> ${doctors[i].firstName} ${doctors[i].lastName}</h5>
+          <h6 class="card-subtitle mb-2 text-muted"> ${doctors[i].street} ${doctors[i].city}, ${doctors[i].state} ${doctors[i].zip}</h6>
+          <p class="card-text">Phone Number: ${doctors[i].phoneNumber}<br><p>Taking new patients? ${doctors[i].newPatient}</p>
+        </div>
+      </div>`)
+    }
+  }
 
  function parseData(response){
    let body = JSON.parse(response);
