@@ -8,13 +8,24 @@ import './styles.css'
 
 
  function showDoctorInfo(doctors){
-   doctors.forEach(function(doctor){
-     $(".output").append(`<p>Name: ${doctor.firstName} ${doctor.lastName}</p><br><p>Address: ${doctor.street}</p><br><p>${doctor.city}, ${doctor.state} ${doctor.zip}</p><br><p>Phone Number: ${doctor.phoneNumber}</p><br><p>Taking new patients? ${doctor.newPatient}</p><br>` )
-   })
-
-
+   for(let i = 0; i < doctors.length; i++) {
+     $(".output").append(`<p>Name: ${doctors[i].firstName} ${doctors[i].lastName}</p><br><p>Address: ${doctors[i].street}</p><br><p>${doctors[i].city}, ${doctors[i].state} ${doctors[i].zip}</p><br><p>Phone Number: ${doctors[i].phoneNumber}</p><br><p>Taking new patients? ${doctors[i].newPatient}</p><br>`)
+   }
  }
 
+ function parseData(response){
+   let body = JSON.parse(response);
+   let data = body.data;
+   let doctorData = new DoctorData();
+   doctorData.createAllDocs(data);
+   let allDocs = doctorData.allDocs;
+   showDoctorInfo(allDocs)
+ }
+
+ function errorMessage(error){
+   $("#error").show();
+   $(".error").html(`There was error processing your query: ${error.message}`)
+ }
 
 $(document).ready(function(){
   const finder = new DoctorFinder();
@@ -26,14 +37,9 @@ $(document).ready(function(){
     let promise = finder.findDoctorByName(first, last);
 
     promise.then(function(response){
-      let body = JSON.parse(response);
-      let data = body.data;
-      let doctorData = new DoctorData();
-      showDoctorInfo(doctorData.createAllDocs(data))
-
+      parseData(response);
     }, function(error){
-      $("#error").show();
-      $(".error").html(`There was error processing your query: ${error.message}`)
+      errorMessage(error)
     })
   });
 
@@ -43,15 +49,9 @@ $(document).ready(function(){
     let promise = finder.findDoctorByKeyword(keyword);
 
     promise.then(function(response){
-      let body = JSON.parse(response);
-      let data = body.data;
-      let doctorData = new DoctorData();
-      doctorData.createAllDocs(data);
-      let allDocs = doctorData.allDocs;
-      showDoctorInfo(allDocs);
+      parseData(response);
     }, function(error){
-      $("#error").show();
-      $(".error").html(`There was error processing your query: ${error.message}`)
+      errorMessage(error)
     })
   });
 });

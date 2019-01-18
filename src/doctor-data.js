@@ -24,10 +24,6 @@ export class DoctorData {
       const lat = data[i].practices[0].lat;
       const long = data[i].practices[0].lon;
       this.createDoctorObject(firstName, lastName, street, aptNum, city, state, zip, phoneNumber, newPatient, lat, long);
-
-
     }
-
   }
-
 }
