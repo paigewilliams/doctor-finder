@@ -14,7 +14,8 @@ function parseDoctors(body){
     const zip = doctor.data[0].practices[0].visit_address.zip;
     const phoneNumber = doctor.data[0].practices[0].phones[0].number;
     const newPatient = doctor.data[0]. practices[0].accepts_new_patients;
-    
+    doctor = new Doctor(name, street, aptNum, city, state, zip, phoneNumber, newPatient);
+    doctorData.allDocs.push(doctor);
   })
 }
 
