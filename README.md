@@ -1,6 +1,6 @@
 # Doctor Finder
 
-#### Janurary 18th, 2019
+#### January 18th, 2019
 
 ## Contributors
 
@@ -12,7 +12,7 @@ This is an application that allows the user to search for a doctor in the Portla
 
 I also collect the coordinates of the doctors practice, which gives me the possibility of creating a map of the found doctors offices.
 
-This is an exercise is using JavaScript's asynchrony and making API calls. 
+This is an exercise is using JavaScript's asynchrony and making API calls.
 
 ## Install Instructions
 
