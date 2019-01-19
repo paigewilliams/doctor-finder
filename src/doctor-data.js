@@ -20,7 +20,7 @@ export class DoctorData {
       const state = data[i].practices[0].visit_address.state;
       const zip = data[i].practices[0].visit_address.zip;
       const phoneNumber = data[i].practices[0].phones[0].number;
-      const newPatient = data[i]. practices[0].accepts_new_patients;
+      let newPatient = data[i].practices[0].accepts_new_patients;
       const lat = data[i].practices[0].lat;
       const long = data[i].practices[0].lon;
       const spec = data[i].specialties[0].actor

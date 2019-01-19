@@ -38,13 +38,11 @@ import './styles.css'
    let body = JSON.parse(response);
    const allSymptoms = body.data;
    const allSymptomsArray = [];
-
    for(let i = 0; i < allSymptoms.length; i++){
      allSymptomsArray.push(`<option value="${allSymptoms[i].name}">${allSymptoms[i].name}</option>`);
    }
    $("#keyword").html(allSymptomsArray.join(''));
  }
-
 
  function errorMessage(error){
    $("#error").show();
@@ -52,14 +50,12 @@ import './styles.css'
  }
 
 $(document).ready(function(){
-
   const symptoms = new SymptomFinder()
   let promise = symptoms.findSymptom()
-
   promise.then(function(response){
     parseSymptomData(response)
-
     const finder = new DoctorFinder();
+
     $(".doctor-finder-name").submit(function(event){
       event.preventDefault();
       const first = $("#doctor-first-name").val();
@@ -77,7 +73,6 @@ $(document).ready(function(){
       event.preventDefault();
       const keyword = $("#keyword").val();
       let promise = finder.findDoctorByKeyword(keyword);
-
       promise.then(function(response){
         $(".doctor-finder-keyword")[0].reset();
         parseData(response);
@@ -86,6 +81,4 @@ $(document).ready(function(){
       })
     });
   })
-
-
 });

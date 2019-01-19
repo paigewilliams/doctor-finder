@@ -12,5 +12,6 @@ export class Doctor{
     this.lat = lat;
     this.long = long;
     this.spec = spec;
+
   }
 }
