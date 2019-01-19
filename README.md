@@ -8,7 +8,11 @@
 
 ## Description
 
-This is an application that allows the user to search for a doctor in the Portland-Metro area through the BetterDoctor API. The user can either search by their ailment or the doctors name. If a doctor is found, the user can view the doctors first and last name, address, phone number, website, and whether or not the doctor is taking new patients. Additionally, if there is an error in their search, the proper error message appears. Lastly, if their search does not result in any doctors the user receives a message to try a different search.
+This is an application that allows the user to search for a doctor in the Portland-Metro area through the BetterDoctor API. The user can either search by their ailment or the doctors name. If a doctor is found, the user can view the doctors first and last name, address, phone number, specialty, and whether or not the doctor is taking new patients. Additionally, if there is an error in their search, the proper error message appears. Lastly, if their search does not result in any doctors the user receives a message to try a different search.
+
+I also collect the coordinates of the doctors practice, which gives me the possibility of creating a map of the found doctors offices.
+
+This is an exercise is using JavaScript's asynchrony and making API calls. 
 
 ## Install Instructions
 
